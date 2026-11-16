@@ -9,6 +9,7 @@ Cada actividad tiene su propia carpeta con la presentación interactiva (HTML), 
 | Institución / grupo | Actividad | Tipo | Fecha | Material |
 |---|---|---|---|---|
 | Metrobús CDMX | Herramientas de investigación cuantitativa y cualitativa con IA | Plática | 19 nov 2026 | [platicasmetrobus/platica1](platicasmetrobus/platica1/) · [presentación](https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/) |
+| Metrobús CDMX | Automatización de procesos e instrumentos de evaluación | Plática | — | [platicasmetrobus/platica2](platicasmetrobus/platica2/) · [presentación](https://carlosricardocm.github.io/platicas/platicasmetrobus/platica2/) |
 
 ## Organización
 

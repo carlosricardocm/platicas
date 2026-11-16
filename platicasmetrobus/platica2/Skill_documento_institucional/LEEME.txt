@@ -1,0 +1,17 @@
+SKILL DE RESPALDO: documento-institucional-metrobus
+====================================================
+Es el mismo skill que se crea en el Ejercicio 5 de la Plática 1. Úsalo si la creación en vivo falla.
+
+Contenido del ZIP:
+  SKILL.md                    instrucciones que sigue Claude (formato institucional)
+  assets/encabezado.png       encabezado con los logos (tomado de la carpeta Logos)
+  scripts/crear_documento.py  genera el Word con encabezado, títulos rojos y pie de página
+
+Cómo instalarlo en Claude:
+  1. Personalizar › Skills (Customize › Skills).
+  2. Botón "+" › "Crear skill" › "Subir un skill".
+  3. Elige documento-institucional-metrobus.zip y activa el skill.
+  4. Abre una tarea nueva en Cowork y pide, por ejemplo:
+     "Haz una minuta de la reunión de hoy con el skill documento-institucional-metrobus."
+
+Para cambiar el logo: reemplaza assets/encabezado.png dentro del ZIP por otra imagen con el mismo nombre.

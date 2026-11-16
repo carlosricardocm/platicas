@@ -1,0 +1,44 @@
+CORREOS DE PRUEBA PARA EL EJERCICIO 2 (Plática 2) · TEXTOS FICTICIOS
+Enviarlos a metrobusplatica@gmail.com antes de la plática (a mano o con Cowork, ver abajo).
+Asunto de cada correo: "Queja Línea 1 - Q-00X" (X = número del correo).
+
+Q-001
+Estación: Sonora
+La puerta de cristal del andén en Sonora sentido sur está rota, se abre sola. Alguien se va a caer al carril.
+
+Q-002
+Estación: Buenavista
+Ya van tres noches que un hombre se sube en Buenavista y se pega a las chavas en la zona de mujeres. Siempre como a las 9.
+
+Q-003
+Estación: Revolución
+Me robaron el celular al bajar en Revolución, como a las 8 de la noche. No había policía.
+
+Q-004
+Estación: Chilpancingo
+Una señora se desmayó dentro de la unidad en Chilpancingo y el operador no sabía qué hacer. Tardó mucho la ayuda.
+
+Q-005
+Estación: La Raza
+El elevador de La Raza sigue sin funcionar. Ya reporté dos veces.
+
+Q-006
+Estación: Perisur
+Esperé 25 minutos en Perisur rumbo al norte, domingo en la tarde.
+
+------------------------------------------------------------
+OPCIÓN: QUE COWORK LOS ENVÍE (con el conector de Gmail activo)
+Escribe en Cowork:
+
+Lee el archivo Correos_de_prueba.txt y envía a metrobusplatica@gmail.com un correo por cada queja (Q-001 a Q-006), con el asunto "Queja Línea 1 - Q-00X" y en el cuerpo la estación y el texto.
+
+(En modo Manual, Cowork pedirá tu aprobación antes de enviar cada correo.)
+
+------------------------------------------------------------
+CLASIFICACIÓN ESPERADA
+Q-001 Infraestructura · Negativo · urgencia ALTA (riesgo de caída)
+Q-002 Seguridad · Negativo · urgencia ALTA (acoso recurrente)
+Q-003 Seguridad · Negativo · urgencia ALTA (robo)
+Q-004 Seguridad · Negativo · urgencia ALTA (emergencia médica)
+Q-005 Accesibilidad · Negativo · urgencia Media
+Q-006 Espera · Negativo · urgencia Baja
