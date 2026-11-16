@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plática 1 · Herramientas de investigación cuantitativa y cualitativa con IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#1b1b1b;overflow:hidden}
+h1,h2,h3,p,ul,ol{margin:0}
+#escenario{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+#escenario>section{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;visibility:hidden}
+#escenario>section.activa{visibility:visible}
+section aside{display:none}
+#barra{position:fixed;left:0;bottom:0;height:5px;background:#C8102E;transition:width .3s;z-index:5}
+#notas{position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;background:rgba(20,20,20,.95);color:#f2f2f2;font:18px/1.45 'Source Sans 3',Arial,sans-serif;padding:16px 24px 22px;display:none;z-index:6}
+#notas b{color:#F4B6C0}
+#ayuda{position:fixed;right:14px;top:12px;color:#bbb;font:14px 'Source Sans 3',Arial,sans-serif;background:rgba(0,0,0,.55);padding:6px 10px;border-radius:6px;z-index:7;transition:opacity .6s}
+@media print{html,body{overflow:visible;background:#fff}#barra,#notas,#ayuda{display:none}#escenario{position:static;transform:none!important}#escenario>section{position:relative;visibility:visible;page-break-after:always}@page{size:1920px 1080px;margin:0}}
+
+:root {
+  --rojo: #C8102E;
+  --l1: #A4343A;
+  --morado: #87189D;
+  --azul: #2F5D9E;
+  --tinta: #222222;
+  --gris: #5A5A5A;
+  --claro: #F3F3F3;
+  --rosa: #FBE9EC;
+  --lila: #F3E8F5;
+  --blanco: #FDFCFB;
+}
+body { font-family: 'Source Sans 3', Arial, sans-serif; color: var(--tinta); }
+section { counter-increment: page; }
+
+/* Diapositiva de contenido */
+section.contenido { background: var(--blanco); padding: 96px 128px 160px; display: flex; flex-direction: column; gap: 28px; }
+.topbar { position: absolute; left: 0; top: 0; width: 1920px; height: 14px; background: var(--rojo); }
+.contenido h2 { font-size: 54px; font-weight: 700; line-height: 1.1; color: var(--tinta); }
+.contenido h2.largo { font-size: 46px; }
+.pie { position: absolute; left: 128px; bottom: 64px; width: 1664px; display: flex; justify-content: space-between; align-items: center; }
+.pie p { font-size: 24px; color: var(--gris); }
+.pnum::after { content: counter(page); }
+
+/* Etiquetas */
+.tags { display: flex; gap: 16px; align-items: center; }
+.tag { font-size: 24px; font-weight: 700; color: #FFFFFF; padding: 6px 22px; border-radius: 999px; background: var(--gris); }
+.tag.cuanti { background: var(--rojo); }
+.tag.cuali { background: var(--morado); }
+.tag.mcp { background: var(--azul); }
+.tag.skill { background: var(--l1); }
+.tag.integ { background: var(--tinta); }
+.tags .nota { font-size: 24px; font-style: italic; color: var(--gris); margin-left: 12px; }
+
+/* Tarjetas */
+.fila { display: flex; gap: 32px; }
+.card { background: var(--claro); border-radius: 18px; padding: 32px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.card.rosa { background: var(--rosa); }
+.card.lila { background: var(--lila); }
+.card h3 { font-size: 34px; font-weight: 700; line-height: 1.15; }
+.card .txt { font-size: 26px; line-height: 1.3; color: var(--tinta); }
+.card .gris { font-size: 24px; line-height: 1.3; color: var(--gris); }
+.rojo { color: var(--rojo); }
+.morado { color: var(--morado); }
+.banda { border-radius: 18px; padding: 24px 36px; background: var(--rosa); }
+.banda p { font-size: 28px; line-height: 1.3; }
+.banda.roja { background: var(--rojo); display: flex; gap: 32px; align-items: center; }
+.banda.roja p { color: #FFFFFF; }
+
+/* Íconos */
+.ico { width: 76px; height: 76px; border-radius: 38px; background: var(--rojo); display: flex; align-items: center; justify-content: center; flex: none; }
+.ico.morado { background: var(--morado); }
+.ico.l1 { background: var(--l1); }
+.ico.blanco { background: #FFFFFF; }
+.ico svg.xi { width: 42px; height: 42px; color: #FFFFFF; }
+.ico.blanco svg.xi { color: var(--rojo); }
+.cab { display: flex; gap: 22px; align-items: center; }
+
+/* Ejercicios */
+.ejercicio { display: flex; gap: 32px; flex: 1; }
+.pasos { width: 560px; flex: none; background: var(--claro); border-radius: 18px; padding: 32px; display: flex; flex-direction: column; gap: 22px; }
+.pasos h3 { font-size: 30px; font-weight: 700; color: var(--rojo); }
+.paso { display: flex; gap: 18px; align-items: flex-start; }
+.num { width: 48px; height: 48px; border-radius: 24px; background: var(--rojo); flex: none; display: flex; align-items: center; justify-content: center; }
+.num p { font-size: 24px; font-weight: 700; color: #FFFFFF; }
+.paso .txt { font-size: 26px; line-height: 1.3; }
+.der { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+.prompt { background: #1E1E1E; border-radius: 18px; padding: 30px 36px; display: flex; flex-direction: column; gap: 14px; }
+.prompt .lbl { font-size: 24px; font-weight: 700; color: #F4B6C0; letter-spacing: 2px; }
+.prompt .cuerpo { font-size: 26px; line-height: 1.32; color: #FFFFFF; }
+.prompt .cuerpo.sm { font-size: 24px; }
+.esperado { background: var(--rosa); border-radius: 18px; padding: 22px 32px; }
+.esperado p { font-size: 26px; line-height: 1.3; }
+
+/* Cifras */
+.cifra { font-size: 96px; font-weight: 700; line-height: 1; color: var(--rojo); }
+.cifra.med { font-size: 76px; }
+
+/* Ruta de la línea */
+.ruta { display: flex; margin-top: 120px; }
+.parada { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.riel { display: flex; align-items: center; width: 100%; }
+.seg { flex: 1; height: 14px; background: var(--l1); }
+.seg.vacio { background: transparent; }
+.estacion { width: 84px; height: 84px; border-radius: 42px; border: 10px solid var(--l1); background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none; }
+.estacion p { font-size: 32px; font-weight: 700; color: var(--l1); }
+.parada .et { font-size: 28px; font-weight: 700; text-align: center; line-height: 1.2; }
+.parada .sub { font-size: 24px; color: var(--gris); text-align: center; }
+
+/* Portada y cierre */
+section.portada, section.cierre { background: var(--rojo); padding: 128px; display: flex; flex-direction: column; gap: 40px; color: #FFFFFF; }
+section.portada { justify-content: space-between; }
+.logos { background: #FFFFFF; border-radius: 18px; padding: 26px 34px; display: flex; align-self: flex-start; }
+.portada h1 { font-size: 84px; font-weight: 700; line-height: 1.08; color: #FFFFFF; width: 1400px; }
+.portada .autor { font-size: 38px; color: #FFFFFF; }
+.cierre h1 { font-size: 72px; font-weight: 700; color: #FFFFFF; }
+.cierre .card { background: #FFFFFF; color: var(--tinta); flex: none; }
+.lista { font-size: 30px; line-height: 1.35; padding-left: 40px; }
+.lista li { margin-bottom: 10px; }
+
+/* Animación suave de llegada */
+@keyframes sube { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+section.activa .entra { animation: sube 500ms ease-out both; animation-delay: calc(var(--i, 0) * 120ms); }
+
+</style>
+</head>
+<body>
+<div id="escenario">
+<section id="portada" class="portada">
+<div class="logos"><img src="Logos/encabezado.png" alt="Logotipos del Gobierno de la Ciudad de México, Movilidad Integrada y Metrobús" style="width:900px;height:160px;object-fit:contain"></div>
+<div style="display:flex;flex-direction:column;gap:36px">
+<h1>Herramientas de investigación cuantitativa y cualitativa con IA</h1>
+<p class="autor">Carlos Ricardo Cruz Mendoza, DCC, IIMAS, UNAM</p>
+</div>
+<aside>[0:00–0:03] Bienvenida. Hoy todo se hace en vivo en Claude Cowork con un caso de la Línea 1. Cada ejercicio tiene en pantalla el texto exacto que voy a escribir; todos los textos están también en el Guion paso a paso.</aside>
+</section>
+<section id="formas" class="contenido">
+<div class="topbar"></div>
+<h2>Dos formas de investigar: cuantitativa y cualitativa</h2>
+<div class="fila" style="flex:1">
+<div class="card entra" style="--i:0">
+<div class="cab"><div class="ico"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M8 17v-6"/><path d="M13 17V7"/><path d="M18 17v-4"/></svg></div><div><h3 class="rojo">Parte cuantitativa</h3><p class="txt"><b>Mide con números.</b></p></div></div>
+<p class="txt"><b>Responde:</b> ¿Cuánto? ¿Dónde? ¿A quiénes afecta más?</p>
+<p class="txt" style="min-height:170px;box-sizing:border-box;flex:0 0 auto"><b>Produce:</b> promedios, porcentajes, comparaciones y pruebas estadísticas. Centrado en números estadísticas, patrones matemáticos y predicciones.</p>
+</div>
+<div class="card lila entra" style="--i:1">
+<div class="cab"><div class="ico morado"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h3 class="morado">Parte cualitativa</h3><p class="txt"><b>Comprende con palabras.</b></p></div></div>
+<p class="txt"><b>Responde:</b> ¿Por qué pasa? ¿Cómo lo viven las personas?</p>
+<p class="txt" style="min-height:76px;box-sizing:border-box;flex:0 0 auto"><b>Produce:</b> temas, citas textuales y explicaciones. Centrado en texto, audio, video, significados, temas y sentimientos</p>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:03–0:10] Explica la diferencia con el caso: la encuesta dice que 85% de las mujeres se siente insegura de noche (cuantitativo); las entrevistas cuentan qué viven en el andén y por qué (cualitativo). Archivos: Encuesta_Linea1_sept2026.xlsx, Comentarios_usuarios_L1_jul-sep2026.xlsx (también en Drive) y la carpeta Entrevistas_txt. Ábrelos 10 segundos cada uno.</aside>
+</section>
+<section id="herramientas" class="contenido">
+<div class="topbar"></div>
+<h2>Herramientas de IA</h2>
+<div class="fila">
+<div class="card entra" style="--i:0">
+<h3 class="rojo">Para la parte cuantitativa</h3>
+<div><p class="txt"><b>Asistentes que analizan archivos</b></p><p class="gris">Claude, ChatGPT, Gemini, Deepseek, Qwen: limpian datos, visualizan, calculan y grafican datos.</p></div>
+<div><p class="txt"><b>Jupyter Notebook</b></p><p class="gris">Análisis estadístico mediante código.</p></div>
+<div><p class="txt"><b>Julius AI</b></p><p class="gris">Análisis de datos para visualizaciones, gráficos y resumenes.Puedes subir un archivo (Excel, CSV, base de datos) y pedirle cosas en lenguaje natural como: "Haz una regresión lineal entre estas dos variables" o "Genera un gráfico de dispersión con tendencia"</p></div>
+</div>
+<div class="card lila entra" style="--i:1">
+<h3 class="morado">Para la parte cualitativa</h3>
+<div><p class="txt"><b>Gemini Notebook (antes notebookLM)</b></p><p class="gris">Preguntar a tus documentos con citas a la fuente utilizando lenguaje natural.</p></div>
+<div><p class="txt"><b>ATLAS.ti y MAXQDA&nbsp;</b></p><p class="gris">Codificación de entrevistas y comentarios</p></div>
+<div><p class="txt"><b>Transcripción</b></p><p class="gris">Whisper</p></div>
+<div><p class="txt"><b>RAG (Generación aumentada por recuperación)</b></p><p class="gris">Técnica avanzada: búsqueda personalizada en tus textos/audios/videos que son pasados a la IA para su procesamiento.</p></div>
+</div>
+</div>
+<div class="banda roja entra" style="--i:2">
+<div class="ico blanco"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+<p><b>En esta plática usaremos Claude Cowork para las dos partes.</b> Un solo agente analiza la encuesta, codifica comentarios y entrevistas, se conecta a Google Drive (MCP) y usa skills para dar un resumen utilizando un formato institucional.</p>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:10–0:15] No es una recomendación comercial: son ejemplos por tipo de tarea. Lo importante es la categoría. RAG (Retrieval-Augmented Generation) es una técnica en la que la IA primero busca los fragmentos relevantes en una colección grande de documentos (por ejemplo, miles de quejas o expedientes) y luego responde con base en ellos, citándolos; NotebookLM es un ejemplo de herramienta que lo usa. Explica por qué usamos Cowork: hace ambas partes en un mismo lugar, trabaja con los archivos de la carpeta y con Gmail/Drive, y deja todo listo como documento institucional.</aside>
+</section>
+<section id="cowork" class="contenido">
+<div class="topbar"></div>
+<h2>Claude Cowork</h2>
+<div class="banda" style="background:var(--claro)"><p><b class="rojo">Un agente de IA no solo contesta preguntas:</b> le das un objetivo, arma un plan, ejecuta los pasos con tus archivos y aplicaciones, revisa su trabajo y te pide aprobación antes de actuar. Cowork es ese agente dentro de Claude Desktop.</p></div>
+<div class="fila" style="gap:24px;flex:1">
+<div class="card entra" style="--i:0;background:#FFFFFF;border:2px solid #E2E2E2">
+<div class="cab"><div class="ico"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></div><h3>Carpeta</h3></div>
+<p class="gris">Lee y crea archivos (Excel, Word, PDF) solo en la carpeta que le conectas.</p>
+</div>
+<div class="card entra" style="--i:1;background:#FFFFFF;border:2px solid #E2E2E2">
+<div class="cab"><div class="ico"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><h3>Conectores (MCP)</h3></div>
+<p class="gris">MCP es un estándar abierto que conecta a Claude con otras aplicaciones. Hoy: Gmail y Drive.</p>
+</div>
+<div class="card entra" style="--i:2;background:#FFFFFF;border:2px solid #E2E2E2">
+<div class="cab"><div class="ico"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h3>Skills</h3></div>
+<p class="gris">Carpetas con instrucciones y archivos que Claude reutiliza, como un manual de procedimientos.</p>
+</div>
+<div class="card entra" style="--i:3;background:#FFFFFF;border:2px solid #E2E2E2">
+<div class="cab"><div class="ico l1"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Modo Manual</h3></div>
+<p class="gris">Claude pide tu aprobación antes de cada acción. La persona decide.</p>
+</div>
+</div>
+<div class="banda"><p><b>Regla: Claude propone, la persona verifica.&nbsp;</b></p></div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:15–0:23] Diferencia entre un chat y un agente: en un chat tú haces cada paso; en Cowork describes el resultado y Claude planea y ejecuta (abre archivos, corre cálculos, crea documentos, usa conectores), mostrando su avance. MCP (Model Context Protocol) es el estándar abierto con el que Claude se conecta a otras aplicaciones; en Claude se llaman “conectores”. Un skill es una carpeta con instrucciones (SKILL.md) y archivos de apoyo que Claude carga cuando la tarea lo pide.</aside>
+</section>
+<section id="piezas" class="contenido">
+<div class="topbar"></div>
+<h2>Conector, skill y plugin: ¿en qué se diferencian?</h2>
+<div class="fila" style="gap:24px;flex:1">
+<div class="card entra" style="--i:0;background:#FFFFFF;border:2px solid #E2E2E2">
+<div class="cab"><div class="ico" style="background:#2F5D9E"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div><h3>Conector (MCP)</h3><p class="gris"><b>Con qué</b> se conecta</p></div></div>
+<p class="txt">Da acceso a otra aplicación para leer o actuar en ella.</p>
+<p class="gris"><b>Se parece a:</b> una llave de acceso a otra oficina.</p>
+<p class="gris"><b>En el curso:</b> leer y guardar en Google Drive; leer quejas y dejar borradores en Gmail.</p>
+</div>
+<div class="card entra" style="--i:1;background:#FFFFFF;border:2px solid #E2E2E2">
+<div class="cab"><div class="ico l1"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div><h3>Skill</h3><p class="gris"><b>Cómo</b> lo hace</p></div></div>
+<p class="txt">Instrucciones y archivos que Claude reutiliza para hacer una tarea siempre igual.</p>
+<p class="gris"><b>Se parece a:</b> un manual de procedimientos.</p>
+<p class="gris"><b>En el curso:</b> documento-institucional-metrobus, con logos, colores y pie de página.</p>
+</div>
+<div class="card entra" style="--i:2;background:#FFFFFF;border:2px solid #E2E2E2">
+<div class="cab"><div class="ico" style="background:#222222"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div><h3>Plugin</h3><p class="gris"><b>Todo junto</b> en un paquete</p></div></div>
+<p class="txt">Un paquete instalable que reúne skills, conectores y comandos para un área o puesto.</p>
+<p class="gris"><b>Se parece a:</b> una caja de herramientas armada para un equipo.</p>
+<p class="gris"><b>En el curso:</b> un plugin “Metrobús” podría reunir el skill institucional y los conectores de Gmail y Drive para instalarlos de una vez.</p>
+</div>
+</div>
+<div class="banda"><p><b class="rojo">Juntos:</b> el conector da acceso, el skill enseña el procedimiento y el plugin empaqueta ambos para compartirlos con todo un equipo.</p></div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:23–0:27] Tres piezas que se confunden. Conector (MCP): le da a Claude acceso a otra aplicación, por ejemplo Gmail o Drive; sin conector, Claude solo ve la carpeta local. Skill: le enseña a Claude cómo hacer una tarea de forma repetible (un manual con plantillas o logos); no da acceso a nada nuevo. Plugin: un paquete que se instala de una vez y trae varias piezas juntas (skills, conectores, comandos); sirve para que todo un equipo trabaje con las mismas herramientas. Se instalan desde Personalizar en Claude Desktop. Pregunta al grupo: en el ejercicio 5, ¿qué parte es conector y qué parte es skill?</aside>
+</section>
+<section id="caso" class="contenido">
+<div class="topbar"></div>
+<h2 class="largo">Caso de uso: Análisis cualitativo y cuantitativo de la encuesta de satisfacción percibida por usuarios del Metrobús</h2>
+<div class="ruta">
+<div class="parada entra" style="--i:0"><div class="riel"><div class="seg vacio"></div><div class="estacion"><p>1</p></div><div class="seg"></div></div><p class="et">Limpiar la encuesta</p><p class="sub">Carpeta local</p></div>
+<div class="parada entra" style="--i:1"><div class="riel"><div class="seg"></div><div class="estacion"><p>2</p></div><div class="seg"></div></div><p class="et">Analizar números</p><p class="sub">Carpeta local</p></div>
+<div class="parada entra" style="--i:2"><div class="riel"><div class="seg"></div><div class="estacion"><p>3</p></div><div class="seg"></div></div><p class="et">Analizar comentarios</p><p class="sub">Conector Google Drive</p></div>
+<div class="parada entra" style="--i:3"><div class="riel"><div class="seg"></div><div class="estacion"><p>4</p></div><div class="seg"></div></div><p class="et">Analizar entrevistas</p><p class="sub">Carpeta local</p></div>
+<div class="parada entra" style="--i:4"><div class="riel"><div class="seg"></div><div class="estacion"><p>5</p></div><div class="seg vacio"></div></div><p class="et">Informe institucional</p><p class="sub">Skill + Google Drive</p></div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:23–0:26] Recorre la ruta. Señala las dos novedades del curso: un conector (MCP) para leer y guardar en Google Drive, y un skill que crearemos para hacer documentos con el encabezado institucional.</aside>
+</section>
+<section id="ej1" class="contenido">
+<div class="topbar"></div>
+<h2>Ejercicio 1 · Revisar y limpiar la encuesta</h2>
+<div class="tags"><p class="tag cuanti">Parte cuantitativa</p><p class="tag">Carpeta local</p><p class="tag">Excel</p></div>
+<div class="ejercicio">
+<div class="pasos">
+<h3>Pasos</h3>
+<div class="paso"><div class="num"><p>1</p></div><p class="txt">Abre una tarea nueva en Cowork con la carpeta CURSO.</p></div>
+<div class="paso"><div class="num"><p>2</p></div><p class="txt">Copia el texto de la derecha y envíalo.</p></div>
+<div class="paso"><div class="num"><p>3</p></div><p class="txt">Aprueba cuando pida crear el archivo.</p></div>
+<div class="paso"><div class="num"><p>4</p></div><p class="txt">Compara su respuesta con la siguiente diapositiva.</p></div>
+</div>
+<div class="der">
+<div class="prompt">
+<p class="lbl">ESCRIBE EN COWORK</p>
+<p class="cuerpo">Revisa Encuesta_Linea1_sept2026.xlsx (carpeta de Material Encuesta) y su hoja Diccionario.<br>1) Antes de cambiar nada, dime qué problemas de calidad tiene: duplicados, vacíos, valores imposibles y nombres de estación mal escritos.<br>2) Después límpiala y agrega la columna tramo: Norte = Indios Verdes a Buenavista; Centro = El Chopo a Nápoles; Sur = Colonia del Valle a El Caminero.<br>3) Guárdala como Encuesta_limpia.xlsx y dime cuántos registros quedaron.</p>
+</div>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:26–0:36] Ejercicio 1. Si no detecta algo, pregúntale directo: “¿hay folios repetidos?”. Pídele que diga cuántos registros había antes y después de cada paso.</aside>
+</section>
+<section id="res1" class="contenido">
+<div class="topbar"></div>
+<h2>Lo que debe encontrar antes de analizar</h2>
+<div class="fila" style="gap:24px">
+<div class="card entra" style="--i:0"><p class="cifra">12</p><p class="txt">folios duplicados</p></div>
+<div class="card entra" style="--i:1"><p class="cifra">57</p><p class="txt">nombres distintos en la columna de estación</p></div>
+<div class="card entra" style="--i:2"><p class="cifra">9</p><p class="txt">edades vacías: se dejan vacías, no se inventan</p></div>
+<div class="card entra" style="--i:3"><p class="cifra">2</p><p class="txt">esperas imposibles (120 y 150 min)</p></div>
+</div>
+<div class="banda" style="background:var(--claro);padding:36px 40px"><p><b class="rojo">612 registros → 600 cuestionarios válidos.</b> Si se le pasan los duplicados, todos los porcentajes posteriores salen ligeramente mal. Por eso siempre pedimos: “dime cuántos registros quedaron”.</p></div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:36–0:38] Respuestas de referencia en Resultados_de_referencia_P1.xlsx.</aside>
+</section>
+<section id="ej2" class="contenido">
+<div class="topbar"></div>
+<h2>Ejercicio 2 · Analizar los números</h2>
+<div class="tags"><p class="tag cuanti">Parte cuantitativa</p><p class="tag">Carpeta local</p><p class="tag">Excel con gráficas</p></div>
+<div class="ejercicio">
+<div class="pasos">
+<h3>Pasos</h3>
+<div class="paso"><div class="num"><p>1</p></div><p class="txt">En la misma tarea, envía el texto de la derecha.</p></div>
+<div class="paso"><div class="num"><p>2</p></div><p class="txt">Pide que te explique el NPS (Net Promoter Score) y la prueba estadística que usó.</p></div>
+<div class="paso"><div class="num"><p>3</p></div><p class="txt">Abre Resultados_encuesta.xlsx y revisa una cifra con una tabla dinámica.</p></div>
+</div>
+<div class="der">
+<div class="prompt">
+<p class="lbl">ESCRIBE EN COWORK</p>
+<p class="cuerpo sm">Con Encuesta_limpia.xlsx calcula:<br>• satisfacción general promedio y NPS (explica la fórmula);<br>• espera promedio por tramo y franja horaria;<br>• % de mujeres y de hombres que califican la seguridad con 1 o 2, de día y de noche, y si la diferencia es significativa;<br>• qué atributos pesan más en la satisfacción y cuáles se califican peor.<br>Guarda todo en Resultados_encuesta.xlsx, una hoja por tabla, con gráficas.</p>
+</div>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:38–0:48] Ejercicio 2. Puntos a comentar: (1) la IA debe excluir “Prefiero no decir” o decirlo; (2) para comparar proporciones usa chi-cuadrada; (3) de noche hay pocos casos y hay que decirlo.</aside>
+</section>
+<section id="res2" class="contenido">
+<div class="topbar"></div>
+<h2>Resultado: la experiencia empeora donde y cuando se satura el servicio</h2>
+<div class="fila" style="gap:24px">
+<div class="card entra" style="--i:0"><p class="cifra med">6.7</p><p class="txt">satisfacción general (0-10)</p></div>
+<div class="card entra" style="--i:1"><p class="cifra med">−15</p><p class="txt">NPS: más detractores que promotores</p></div>
+<div class="card entra" style="--i:2"><p class="cifra med">13.6 min</p><p class="txt">espera mas larga en el tramo Norte en el pico de la mañana</p></div>
+<div class="card entra" style="--i:3"><p class="cifra med">85%</p><p class="txt">de las mujeres se siente insegura de noche (hombres: 38%)</p></div>
+</div>
+<div class="banda" style="background:var(--claro);padding:32px 40px;display:flex;flex-direction:column;gap:14px">
+<p><b class="rojo">Prioridades:</b> espacio a bordo, frecuencia de paso y seguridad son lo que más pesa en la satisfacción y lo peor calificado.</p>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:48–0:50] Diferencia mujeres vs hombres: 57% vs 28% (χ² = 50.9, p &lt; 0.001). Estas tres prioridades serán los indicadores del instrumento de la Plática 2.</aside>
+</section>
+<section id="ej3" class="contenido">
+<div class="topbar"></div>
+<h2>Ejercicio 3 · Analizar los comentarios desde Google Drive</h2>
+<div class="tags"><p class="tag cuali">Parte cualitativa</p><p class="tag mcp">Conector (MCP): Google Drive</p><p class="nota">MCP: Claude lee el archivo directo de Google Drive, no de tu computadora.</p></div>
+<div class="ejercicio">
+<div class="pasos">
+<h3>Pasos</h3>
+<div class="paso"><div class="num"><p>1</p></div><p class="txt">Verifica en el botón + › Conectores que Google Drive esté activo.</p></div>
+<div class="paso"><div class="num"><p>2</p></div><p class="txt">Envía el texto de la derecha.</p></div>
+<div class="paso"><div class="num"><p>3</p></div><p class="txt">Revisa con el grupo el libro de códigos: ¿falta o sobra algún tema?</p></div>
+<div class="paso"><div class="num"><p>4</p></div><p class="txt">Pide un ejemplo textual y búscalo en el archivo.</p></div>
+</div>
+<div class="der">
+<div class="prompt">
+<p class="lbl">ESCRIBE EN COWORK</p>
+<p class="cuerpo">Busca en mi Google Drive el archivo Comentarios_usuarios_L1_jul-sep2026 (carpeta «Curso Metrobús») y lee los 186 comentarios.<br>1) Propón un libro de códigos de 8 a 12 temas: nombre, definición y dos ejemplos copiados textualmente.<br>2) Clasifica cada comentario por tema y sentimiento.<br>3) Dime cuántos comentarios hay por tema y qué tema aparece que la encuesta no midió.</p>
+</div>
+<div class="esperado"><p><b class="rojo">Resultado esperado:</b> saturación, espera y seguridad son los temas más mencionados; aparece “atención a quejas” y “canales de reporte”, que la encuesta no midió.</p></div>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:50–1:02] Ejercicio 3. Aquí Claude usa el conector de Google Drive (MCP): no lee la carpeta local, va a la nube. Referencia: saturación 51, espera 51 y seguridad 45 menciones (un comentario puede tener varios temas). Las diferencias pequeñas son normales: abren la conversación sobre validar con una segunda persona.</aside>
+</section>
+<section id="ej4" class="contenido">
+<div class="topbar"></div>
+<h2>Ejercicio 4 · Analizar las entrevistas y verificar las citas</h2>
+<div class="tags"><p class="tag cuali">Parte cualitativa</p><p class="tag">Carpeta local</p></div>
+<div class="ejercicio">
+<div class="pasos">
+<h3>Pasos</h3>
+<div class="paso"><div class="num"><p>1</p></div><p class="txt">Envía el texto de la derecha.</p></div>
+<div class="paso"><div class="num"><p>2</p></div><p class="txt">Elige una cita de la tabla.</p></div>
+<div class="paso"><div class="num"><p>3</p></div><p class="txt">Ábrela en el .txt y búscala con Ctrl+F.</p></div>
+<div class="paso"><div class="num"><p>4</p></div><p class="txt">Si no aparece textual, no se puede usar en un informe.</p></div>
+</div>
+<div class="der">
+<div class="prompt">
+<p class="lbl">ESCRIBE EN COWORK</p>
+<p class="cuerpo">Lee las 5 entrevistas de la carpeta Entrevistas_txt. Haz una tabla: filas = temas (saturación, espera, seguridad, accesibilidad, información, recarga, atención a quejas, aspectos positivos); columnas = E1 a E5. En cada celda escribe una frase de resumen y una cita textual entre comillas. Al final dime qué dice la supervisora (E5) que no digan las personas usuarias.</p>
+</div>
+<div class="esperado"><p><b class="rojo">Resultado esperado:</b> la supervisora describe quejas que llegan por varios canales y se capturan a mano: “Para el informe mensual, días”.</p></div>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[1:02–1:12] Ejercicio 4. La verificación con Ctrl+F es el momento didáctico clave: una cita parafraseada o inventada no puede ir en un informe. La frase de E5 es el puente a la Plática 2 (automatización).</aside>
+</section>
+<section id="ej5a" class="contenido">
+<div class="topbar"></div>
+<h2>Ejercicio 5 · Crear un skill: documento institucional con logos</h2>
+<div class="tags"><p class="tag skill">Skill</p><p class="tag">Carpeta Logos</p><p class="nota">Skill: instrucciones + archivos (el logo) que Claude reutiliza cada vez que pidas un documento.</p></div>
+<div class="ejercicio">
+<div class="pasos">
+<h3>Pasos</h3>
+<div class="paso"><div class="num"><p>1</p></div><p class="txt">Envía el texto de la derecha.</p></div>
+<div class="paso"><div class="num"><p>2</p></div><p class="txt">Responde sus preguntas y revisa lo que propone.</p></div>
+<div class="paso"><div class="num"><p>3</p></div><p class="txt">Guarda el skill cuando te lo ofrezca.</p></div>
+<div class="paso"><div class="num"><p>4</p></div><p class="txt">Revisa en Personalizar › Skills que esté activo.</p></div>
+</div>
+<div class="der">
+<div class="prompt">
+<p class="lbl">ESCRIBE EN COWORK</p>
+<p class="cuerpo">Crea un skill llamado documento-institucional-metrobus para hacer documentos Word institucionales:<br>• encabezado en todas las páginas con la imagen Logos/encabezado.png;<br>• títulos en rojo #C8102E, letra Arial 11;<br>• pie de página «Metrobús · Gobierno de la Ciudad de México» con número de página;<br>• tablas con encabezado rojo.<br>Debe usarse cuando pida informes, oficios, minutas, fichas o reportes.</p>
+</div>
+<div class="esperado"><p><b class="rojo">Resultado esperado:</b> Claude escribe el skill (SKILL.md + logo) y ofrece guardarlo. Respaldo: subir documento-institucional-metrobus.zip en Personalizar › Skills.</p></div>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[1:12–1:20] Ejercicio 5, parte A. Explica qué es un skill: una carpeta con instrucciones (SKILL.md) y archivos (aquí el encabezado con logos) que Claude carga cuando la tarea lo pide. Si la creación falla o tarda, usa el respaldo: Personalizar › Skills › + › Crear skill › Subir un skill › documento-institucional-metrobus.zip (carpeta Skill_documento_institucional). Si el skill no se reconoce, abre una tarea nueva.</aside>
+</section>
+<section id="ej5b" class="contenido">
+<div class="topbar"></div>
+<h2>Ejercicio 5 · Usar el skill y guardar el informe en Drive</h2>
+<div class="tags"><p class="tag integ">Integra ambas partes</p><p class="tag skill">Skill</p><p class="tag mcp">Conector (MCP): Google Drive</p><p class="nota">Skill = formato; MCP = Drive.</p></div>
+<div class="ejercicio">
+<div class="der">
+<div class="prompt">
+<p class="lbl">ESCRIBE EN COWORK</p>
+<p class="cuerpo">Con los resultados de los ejercicios 2, 3 y 4, redacta un informe de hallazgos de 2 páginas usando el skill documento-institucional-metrobus: resumen, tabla de indicadores, hallazgos de comentarios y entrevistas, y 3 recomendaciones. Guárdalo como Informe_hallazgos_Linea1.docx en la carpeta de Material Encuesta y súbelo a mi Google Drive, en «Curso Metrobús».</p>
+</div>
+<div class="esperado"><p><b class="rojo">Verifica:</b> Claude debe decir que usa el skill; el encabezado con logos aparece en todas las páginas y el archivo queda en Drive.</p></div>
+</div>
+<div style="width:500px;flex:none;background:#FFFFFF;border:2px solid #E2E2E2;border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.15)">
+<img src="assets/ejemplo_informe.png" alt="Ejemplo del informe generado con el encabezado institucional" style="width:476px;height:580px;object-fit:contain">
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[1:20–1:35] Ejercicio 5, parte B. Aquí se juntan las tres piezas: carpeta local (resultados), skill (formato institucional) y conector MCP (guardar en Drive). En modo Manual, Claude pedirá aprobación para subir el archivo. A la derecha: ejemplo de cómo debe verse.</aside>
+</section>
+<section id="verificar" class="contenido">
+<div class="topbar"></div>
+<h2>Antes de usar un resultado de la IA</h2>
+<div class="fila" style="flex:1">
+<div class="card entra" style="--i:0;padding:40px">
+<div class="cab"><div class="ico"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Verifica</h3></div>
+<ul class="lista">
+<li>¿Usó el número correcto de casos?</li>
+<li>¿Explicó cómo calculó cada cifra?</li>
+<li>¿Las citas existen textualmente?</li>
+<li>¿Una cifra coincide con tu propio cálculo?</li>
+<li>¿Dice claramente lo que no sabe?</li>
+</ul>
+</div>
+<div class="card rosa entra" style="--i:1;padding:40px">
+<div class="cab"><div class="ico l1"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Cuida los datos</h3></div>
+<ul class="lista">
+<li>Usa cuentas autorizadas por la institución</li>
+<li>Quita nombres, teléfonos, placas y folios antes de subir datos</li>
+<li>No subas información reservada</li>
+<li>Las decisiones sobre personas las toma una persona</li>
+<li>Avisa en tus informes que usaste IA</li>
+</ul>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[1:35–1:45] Marco legal (verificar con la Unidad de Transparencia): Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados (DOF 20/03/2025) y la nueva ley local de la CDMX aprobada en mayo de 2026. La cuenta metrobusplatica@gmail.com es solo para práctica: no usarla con datos reales.</aside>
+</section>
+<section id="cierre" class="cierre">
+<h1>Gracias · Preguntas</h1>
+<div class="card" style="padding:44px 48px;gap:20px">
+<h3 class="rojo">En la Plática 2 usaremos lo que hicimos hoy</h3>
+<ul class="lista">
+<li>Los hallazgos → un cuestionario corto para medir cada semana</li>
+<li>Gmail (MCP) → leer y clasificar quejas, preparar respuestas</li>
+<li>El skill institucional → reporte semanal con logos</li>
+<li>Tareas programadas → que el reporte se haga solo cada lunes</li>
+</ul>
+</div>
+<aside>[1:45–2:00] Preguntas. Recuerda guardar la tarea de Cowork: la Plática 2 parte del informe y del skill de hoy.</aside>
+</section>
+</div>
+<div id="barra"></div>
+<div id="notas"></div>
+<div id="ayuda">← → avanzar · F pantalla completa · N notas</div>
+<script>
+(function(){
+  var esc=document.getElementById('escenario'), S=[].slice.call(esc.children), i=0;
+  var barra=document.getElementById('barra'), notas=document.getElementById('notas'), ayuda=document.getElementById('ayuda');
+  function ajusta(){var k=Math.min(innerWidth/1920,innerHeight/1080);esc.style.transform='translate('+(innerWidth-1920*k)/2+'px,'+(innerHeight-1080*k)/2+'px) scale('+k+')';}
+  function ir(n){n=Math.max(0,Math.min(S.length-1,n));S[i].classList.remove('activa');void S[n].offsetWidth;S[n].classList.add('activa');i=n;
+    barra.style.width=((i+1)/S.length*100)+'%';history.replaceState(null,'','#'+(i+1));
+    var a=S[i].querySelector('aside');notas.innerHTML='<b>Notas · diapositiva '+(i+1)+' de '+S.length+'</b><br>'+(a?a.innerHTML:'(sin notas)');}
+  addEventListener('resize',ajusta);ajusta();
+  addEventListener('keydown',function(e){var k=e.key;
+    if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].indexOf(k)>=0){e.preventDefault();ir(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(k)>=0){e.preventDefault();ir(i-1);}
+    else if(k==='Home')ir(0);else if(k==='End')ir(S.length-1);
+    else if(k==='n'||k==='N')notas.style.display=notas.style.display==='block'?'none':'block';
+    else if(k==='f'||k==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}});
+  addEventListener('click',function(e){if(notas.contains(e.target))return;ir(e.clientX<innerWidth*0.3?i-1:i+1);});
+  var x0=null;addEventListener('touchstart',function(e){x0=e.touches[0].clientX;});
+  addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)ir(d<0?i+1:i-1);x0=null;});
+  S.forEach(function(s){s.classList.remove('activa');});
+  var h=parseInt(location.hash.slice(1),10);i=0;S[0].classList.add('activa');ir(h>0?h-1:0);
+  addEventListener('hashchange',function(){var h=parseInt(location.hash.slice(1),10);if(h>0&&h-1!==i)ir(h-1);});
+  setTimeout(function(){ayuda.style.opacity=0;},5000);
+})();
+</script>
+</body>
+</html>
