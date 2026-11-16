@@ -1,11 +1,36 @@
-# Pláticas · Curso Metrobús CDMX
+# Pláticas, cursos y talleres
 
-Material de las pláticas impartidas por Carlos Ricardo Cruz Mendoza (DCC, IIMAS, UNAM) para personal de Metrobús de la Ciudad de México.
+Material de las pláticas, cursos y talleres impartidos por **Carlos Ricardo Cruz Mendoza** (DCC, IIMAS, UNAM).
 
-| Carpeta | Plática | Fecha |
-|---|---|---|
-| [platicasmetrobus/platica1](platicasmetrobus/platica1/) | Herramientas de investigación cuantitativa y cualitativa con IA | Jueves 19 de noviembre de 2026 |
+Cada actividad tiene su propia carpeta con la presentación interactiva (HTML), los datos de los ejercicios, las guías y un `README.md` que explica su contenido.
 
-Presentación en línea: https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/
+## Índice
 
-Todos los datos de los ejercicios son ficticios.
+| Institución / grupo | Actividad | Tipo | Fecha | Material |
+|---|---|---|---|---|
+| Metrobús CDMX | Herramientas de investigación cuantitativa y cualitativa con IA | Plática | 19 nov 2026 | [platicasmetrobus/platica1](platicasmetrobus/platica1/) · [presentación](https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/) |
+
+## Organización
+
+```
+platicas/
+├── README.md                 Este índice
+└── <institución o grupo>/
+    └── <actividad>/
+        ├── README.md         Descripción y contenido de la actividad
+        ├── index.html        Abre la presentación
+        └── ...               Datos, guías y recursos
+```
+
+Para agregar una actividad nueva: crea su carpeta, incluye su `README.md` y añade una fila al índice.
+
+## Ver las presentaciones
+
+Las presentaciones se publican con GitHub Pages en
+`https://carlosricardocm.github.io/platicas/<institución o grupo>/<actividad>/`.
+
+También puedes descargar la carpeta y abrir el archivo `.html` en cualquier navegador.
+
+## Nota
+
+Los datos usados en los ejercicios son ficticios, salvo que el `README.md` de la actividad indique otra cosa.
