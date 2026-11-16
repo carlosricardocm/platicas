@@ -4,6 +4,8 @@ Material de las pláticas impartidas por Carlos Ricardo Cruz Mendoza (DCC, IIMAS
 
 | Carpeta | Plática | Fecha |
 |---|---|---|
-| [platica1](platica1/) | Herramientas de investigación cuantitativa y cualitativa con IA | Jueves 19 de noviembre de 2026 |
+| [platicasmetrobus/platica1](platicasmetrobus/platica1/) | Herramientas de investigación cuantitativa y cualitativa con IA | Jueves 19 de noviembre de 2026 |
+
+Presentación en línea: https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/
 
 Todos los datos de los ejercicios son ficticios.

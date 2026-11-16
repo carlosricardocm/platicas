@@ -20,12 +20,12 @@ Plática impartida el jueves 19 de noviembre de 2026.
 | N | Mostrar u ocultar notas del orador |
 | `#5` al final de la dirección | Ir a la diapositiva 5 |
 
-Si activas **GitHub Pages** (Settings › Pages › rama `main`), la presentación queda publicada en https://carlosricardocm.github.io/platicas/platica1/ (esa dirección abre la presentación directamente).
+Si activas **GitHub Pages** (Settings › Pages › rama `main`), la presentación queda publicada en https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/ (esa dirección abre la presentación directamente).
 
 ## Contenido
 
 ```
-platica1/
+platicasmetrobus/platica1/
 ├── Presentacion Metrobus … Jue 19 noviembre 2026.html   Presentación interactiva (17 diapositivas)
 ├── index.html                      Abre la presentación (para GitHub Pages)
 ├── assets/                         Imágenes de la presentación
