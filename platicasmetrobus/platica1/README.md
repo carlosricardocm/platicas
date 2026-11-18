@@ -26,7 +26,7 @@ Si activas **GitHub Pages** (Settings › Pages › rama `main`), la presentaci�
 
 ```
 platicasmetrobus/platica1/
-├── Presentacion Metrobus … Jue 19 noviembre 2026.html   Presentación interactiva (17 diapositivas)
+├── Presentacion Metrobus … Jue 19 noviembre 2026.html   Presentación interactiva (20 diapositivas)
 ├── index.html                      Abre la presentación (para GitHub Pages)
 ├── assets/                         Imágenes de la presentación
 ├── Logos/encabezado.png            Encabezado institucional (lo usa el skill del ejercicio 5)

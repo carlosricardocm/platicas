@@ -15,6 +15,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 #escenario>section{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;visibility:hidden}
 #escenario>section.activa{visibility:visible}
 section aside{display:none}
+table{border-collapse:collapse}th,td{padding:.55em .6em;text-align:left;border-bottom:1px solid #D9D9D9}th{font-weight:700}
 #barra{position:fixed;left:0;bottom:0;height:5px;background:#C8102E;transition:width .3s;z-index:5}
 #notas{position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;background:rgba(20,20,20,.95);color:#f2f2f2;font:18px/1.45 'Source Sans 3',Arial,sans-serif;padding:16px 24px 22px;display:none;z-index:6}
 #notas b{color:#F4B6C0}
@@ -121,6 +122,13 @@ section.portada { justify-content: space-between; }
 .lista { font-size: 30px; line-height: 1.35; padding-left: 40px; }
 .lista li { margin-bottom: 10px; }
 
+/* Tabla */
+.tabla { width: 100%; font-size: 26px; line-height: 1.3; color: var(--tinta); }
+.tabla tr.cab-tabla { background: var(--rojo); }
+.tabla th { font-weight: 700; color: #FFFFFF; padding: 16px 22px; text-align: left; }
+.tabla td { padding: 16px 22px; }
+.tabla td.err { color: var(--rojo); width: 330px; }
+
 /* Animación suave de llegada */
 @keyframes sube { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 section.activa .entra { animation: sube 500ms ease-out both; animation-delay: calc(var(--i, 0) * 120ms); }
@@ -159,23 +167,58 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 <div class="pie"><p class="pnum"></p></div>
 <aside>[0:03–0:05] Pide que escaneen el código: ahí está la presentación para seguirla en su celular o computadora, los datos de los ejercicios y el guion con todos los textos para Cowork. Dirección: https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/</aside>
 </section>
+<section id="tipos" class="contenido">
+<div class="topbar"></div>
+<h2>IA de tareas vs. IA generativa</h2>
+<div class="fila" style="gap:28px">
+<div class="card entra" style="--i:0;padding:30px 32px;gap:12px">
+<div class="cab"><div class="ico" style="background:var(--gris)"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><h3>IA de tareas</h3><p class="gris">Un modelo especializado por tarea</p></div></div>
+<ul class="lista" style="font-size:26px">
+<li><b>Entrada:</b> video, sensores, tablas</li>
+<li><b>Salida:</b> un número, una etiqueta, una alerta</li>
+<li><b>Se entrena</b> con muchos datos etiquetados</li>
+<li><b>Se mide</b> con exactitud: ¿acertó o no?</li>
+<li><b>Corre</b> en cámaras, equipos pequeños o en sitio</li>
+</ul>
+<p class="gris"><b>Ejemplos:</b> conteo de personas, predicción de demanda y lectura de placas (un detector YOLO entrenado con imágenes etiquetadas en Label Studio, más un OCR como EasyOCR o Tesseract).</p>
+</div>
+<div class="card lila entra" style="--i:1;padding:30px 32px;gap:12px">
+<div class="cab"><div class="ico morado"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></div><div><h3 class="morado">IA generativa (LLM)</h3><p class="gris">Un modelo general basado en lenguaje</p></div></div>
+<ul class="lista" style="font-size:26px">
+<li><b>Entrada:</b> instrucciones en lenguaje natural (<i>prompt</i>)</li>
+<li><b>Salida:</b> texto, imágenes, audio, código</li>
+<li><b>Se adapta</b> con el <i>prompt</i>, sin reentrenar</li>
+<li><b>Difícil de medir:</b> puede “alucinar”</li>
+<li><b>Corre</b> en GPU grandes o como servicio en la nube</li>
+</ul>
+<p class="gris"><b>Ejemplos:</b> redactar, resumir, responder preguntas, agentes y todo lo que veremos en esta plática.</p>
+</div>
+</div>
+<div class="banda" style="background:var(--claro)"><p><b>No compiten, se combinan:</b> la cámara detecta placas y lee su texto (IA de tareas) y el LLM redacta el reporte para el operador (IA generativa).</p></div>
+<div class="banda roja entra" style="--i:2">
+<div class="ico blanco"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+<p><b>En esta plática usaremos la IA generativa para el análisis cuantitativo y cualitativo.</b></p>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:05–0:08] Dos familias de IA. La IA de tareas hace una sola cosa muy bien (contar, detectar, predecir) y se evalúa con exactitud; la IA generativa recibe instrucciones en lenguaje natural y produce texto, tablas o código, por eso puede equivocarse con seguridad (“alucinar”) y hay que verificarla. Ejemplo de IA de tareas, lectura de placas: con Label Studio se etiqueta un conjunto de imágenes de placas mexicanas; con ese conjunto se entrena un modelo de visión (por ejemplo YOLO) para que detecte dónde está la placa; después un OCR (EasyOCR, Tesseract) o un modelo de reconocimiento propio (CRNN) extrae el texto. En Metrobús conviven: un modelo detecta placas o cuenta personas y un LLM redacta el reporte. Hoy usaremos la IA generativa, con Claude Cowork, tanto para analizar la encuesta (cuantitativo) como para los comentarios y entrevistas (cualitativo).</aside>
+</section>
 <section id="formas" class="contenido">
 <div class="topbar"></div>
-<h2>Dos formas de investigar: cuantitativa y cualitativa</h2>
+<h2>Investigación cuantitativa y cualitativa</h2>
 <div class="fila" style="flex:1">
 <div class="card entra" style="--i:0">
 <div class="cab"><div class="ico"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M8 17v-6"/><path d="M13 17V7"/><path d="M18 17v-4"/></svg></div><div><h3 class="rojo">Parte cuantitativa</h3><p class="txt"><b>Mide con números.</b></p></div></div>
 <p class="txt"><b>Responde:</b> ¿Cuánto? ¿Dónde? ¿A quiénes afecta más?</p>
-<p class="txt" style="min-height:170px;box-sizing:border-box;flex:0 0 auto"><b>Produce:</b> promedios, porcentajes, comparaciones y pruebas estadísticas. Centrado en números estadísticas, patrones matemáticos y predicciones.</p>
+<p class="txt" style="min-height:170px;box-sizing:border-box;flex:0 0 auto"><b>Produce:</b> promedios, porcentajes, comparaciones y pruebas estadísticas. Centrado en números, estadísticas, patrones matemáticos y predicciones.</p>
 </div>
 <div class="card lila entra" style="--i:1">
 <div class="cab"><div class="ico morado"><svg class="xi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><h3 class="morado">Parte cualitativa</h3><p class="txt"><b>Comprende con palabras.</b></p></div></div>
 <p class="txt"><b>Responde:</b> ¿Por qué pasa? ¿Cómo lo viven las personas?</p>
-<p class="txt" style="min-height:76px;box-sizing:border-box;flex:0 0 auto"><b>Produce:</b> temas, citas textuales y explicaciones. Centrado en texto, audio, video, significados, temas y sentimientos</p>
+<p class="txt" style="min-height:76px;box-sizing:border-box;flex:0 0 auto"><b>Produce:</b> temas, citas textuales y explicaciones. Centrado en texto, audio, video, significados, temas y sentimientos.</p>
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:03–0:10] Explica la diferencia con el caso: la encuesta dice que 85% de las mujeres se siente insegura de noche (cuantitativo); las entrevistas cuentan qué viven en el andén y por qué (cualitativo). Archivos: Encuesta_Linea1_sept2026.xlsx, Comentarios_usuarios_L1_jul-sep2026.xlsx (también en Drive) y la carpeta Entrevistas_txt. Ábrelos 10 segundos cada uno.</aside>
+<aside>[0:08–0:12] Explica la diferencia con el caso: la encuesta dice que 85% de las mujeres se siente insegura de noche (cuantitativo); las entrevistas cuentan qué viven en el andén y por qué (cualitativo). Archivos: Encuesta_Linea1_sept2026.xlsx, Comentarios_usuarios_L1_jul-sep2026.xlsx (también en Drive) y la carpeta Entrevistas_txt. Ábrelos 10 segundos cada uno.</aside>
 </section>
 <section id="herramientas" class="contenido">
 <div class="topbar"></div>
@@ -185,11 +228,11 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 <h3 class="rojo">Para la parte cuantitativa</h3>
 <div><p class="txt"><b>Asistentes que analizan archivos</b></p><p class="gris">Claude, ChatGPT, Gemini, Deepseek, Qwen: limpian datos, visualizan, calculan y grafican datos.</p></div>
 <div><p class="txt"><b>Jupyter Notebook</b></p><p class="gris">Análisis estadístico mediante código.</p></div>
-<div><p class="txt"><b>Julius AI</b></p><p class="gris">Análisis de datos para visualizaciones, gráficos y resumenes.Puedes subir un archivo (Excel, CSV, base de datos) y pedirle cosas en lenguaje natural como: "Haz una regresión lineal entre estas dos variables" o "Genera un gráfico de dispersión con tendencia"</p></div>
+<div><p class="txt"><b>Julius AI</b></p><p class="gris">Análisis de datos para visualizaciones, gráficos y resúmenes. Puedes subir un archivo (Excel, CSV, base de datos) y pedirle cosas en lenguaje natural como: "Haz una regresión lineal entre estas dos variables" o "Genera un gráfico de dispersión con tendencia"</p></div>
 </div>
 <div class="card lila entra" style="--i:1">
 <h3 class="morado">Para la parte cualitativa</h3>
-<div><p class="txt"><b>Gemini Notebook (antes notebookLM)</b></p><p class="gris">Preguntar a tus documentos con citas a la fuente utilizando lenguaje natural.</p></div>
+<div><p class="txt"><b>NotebookLM</b></p><p class="gris">Preguntar a tus documentos con citas a la fuente utilizando lenguaje natural.</p></div>
 <div><p class="txt"><b>ATLAS.ti y MAXQDA&nbsp;</b></p><p class="gris">Codificación de entrevistas y comentarios</p></div>
 <div><p class="txt"><b>Transcripción</b></p><p class="gris">Whisper</p></div>
 <div><p class="txt"><b>RAG (Generación aumentada por recuperación)</b></p><p class="gris">Técnica avanzada: búsqueda personalizada en tus textos/audios/videos que son pasados a la IA para su procesamiento.</p></div>
@@ -200,7 +243,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 <p><b>En esta plática usaremos Claude Cowork para las dos partes.</b> Un solo agente analiza la encuesta, codifica comentarios y entrevistas, se conecta a Google Drive (MCP) y usa skills para dar un resumen utilizando un formato institucional.</p>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:10–0:15] No es una recomendación comercial: son ejemplos por tipo de tarea. Lo importante es la categoría. RAG (Retrieval-Augmented Generation) es una técnica en la que la IA primero busca los fragmentos relevantes en una colección grande de documentos (por ejemplo, miles de quejas o expedientes) y luego responde con base en ellos, citándolos; NotebookLM es un ejemplo de herramienta que lo usa. Explica por qué usamos Cowork: hace ambas partes en un mismo lugar, trabaja con los archivos de la carpeta y con Gmail/Drive, y deja todo listo como documento institucional.</aside>
+<aside>[0:12–0:15] No es una recomendación comercial: son ejemplos por tipo de tarea. Lo importante es la categoría. RAG (Retrieval-Augmented Generation) es una técnica en la que la IA primero busca los fragmentos relevantes en una colección grande de documentos (por ejemplo, miles de quejas o expedientes) y luego responde con base en ellos, citándolos; NotebookLM es un ejemplo de herramienta que lo usa. Explica por qué usamos Cowork: hace ambas partes en un mismo lugar, trabaja con los archivos de la carpeta y con Gmail/Drive, y deja todo listo como documento institucional.</aside>
 </section>
 <section id="cowork" class="contenido">
 <div class="topbar"></div>
@@ -226,7 +269,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 <div class="banda"><p><b>Regla: Claude propone, la persona verifica.&nbsp;</b></p></div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:15–0:23] Diferencia entre un chat y un agente: en un chat tú haces cada paso; en Cowork describes el resultado y Claude planea y ejecuta (abre archivos, corre cálculos, crea documentos, usa conectores), mostrando su avance. MCP (Model Context Protocol) es el estándar abierto con el que Claude se conecta a otras aplicaciones; en Claude se llaman “conectores”. Un skill es una carpeta con instrucciones (SKILL.md) y archivos de apoyo que Claude carga cuando la tarea lo pide.</aside>
+<aside>[0:15–0:20] Diferencia entre un chat y un agente: en un chat tú haces cada paso; en Cowork describes el resultado y Claude planea y ejecuta (abre archivos, corre cálculos, crea documentos, usa conectores), mostrando su avance. MCP (Model Context Protocol) es el estándar abierto con el que Claude se conecta a otras aplicaciones; en Claude se llaman “conectores”. Un skill es una carpeta con instrucciones (SKILL.md) y archivos de apoyo que Claude carga cuando la tarea lo pide.</aside>
 </section>
 <section id="piezas" class="contenido">
 <div class="topbar"></div>
@@ -253,7 +296,31 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 <div class="banda"><p><b class="rojo">Juntos:</b> el conector da acceso, el skill enseña el procedimiento y el plugin empaqueta ambos para compartirlos con todo un equipo.</p></div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:23–0:27] Tres piezas que se confunden. Conector (MCP): le da a Claude acceso a otra aplicación, por ejemplo Gmail o Drive; sin conector, Claude solo ve la carpeta local. Skill: le enseña a Claude cómo hacer una tarea de forma repetible (un manual con plantillas o logos); no da acceso a nada nuevo. Plugin: un paquete que se instala de una vez y trae varias piezas juntas (skills, conectores, comandos); sirve para que todo un equipo trabaje con las mismas herramientas. Se instalan desde Personalizar en Claude Desktop. Pregunta al grupo: en el ejercicio 5, ¿qué parte es conector y qué parte es skill?</aside>
+<aside>[0:20–0:24] Tres piezas que se confunden. Conector (MCP): le da a Claude acceso a otra aplicación, por ejemplo Gmail o Drive; sin conector, Claude solo ve la carpeta local. Skill: le enseña a Claude cómo hacer una tarea de forma repetible (un manual con plantillas o logos); no da acceso a nada nuevo. Plugin: un paquete que se instala de una vez y trae varias piezas juntas (skills, conectores, comandos); sirve para que todo un equipo trabaje con las mismas herramientas. Se instalan desde Personalizar en Claude Desktop. Pregunta al grupo: en el ejercicio 5, ¿qué parte es conector y qué parte es skill?</aside>
+</section>
+<section id="pedir" class="contenido">
+<div class="topbar"></div>
+<h2>Cómo pedirle bien a la IA</h2>
+<div class="fila" style="gap:20px">
+<div class="card entra" style="--i:0;padding:28px"><h3 class="rojo" style="font-size:30px">1 · Contexto</h3><p class="gris">Quién eres, para qué es y quién lo leerá.</p></div>
+<div class="card entra" style="--i:1;padding:28px"><h3 class="rojo" style="font-size:30px">2 · Tarea</h3><p class="gris">Qué debe hacer, con un verbo claro.</p></div>
+<div class="card entra" style="--i:2;padding:28px"><h3 class="rojo" style="font-size:30px">3 · Datos</h3><p class="gris">Qué archivo, qué hoja y qué columnas.</p></div>
+<div class="card entra" style="--i:3;padding:28px"><h3 class="rojo" style="font-size:30px">4 · Formato</h3><p class="gris">Tabla, Excel, Word, gráfica o resumen breve.</p></div>
+<div class="card entra" style="--i:4;padding:28px"><h3 class="rojo" style="font-size:30px">5 · Control</h3><p class="gris">Que diga cuántos casos usó y cómo calculó.</p></div>
+</div>
+<div class="fila" style="gap:24px;flex:1">
+<div class="card rosa entra" style="--i:5;flex:none;width:520px">
+<h3>Pedido vago</h3>
+<p class="txt">“Analiza la encuesta.”</p>
+<p class="gris">Claude tiene que adivinar qué te importa, con qué datos y en qué formato.</p>
+</div>
+<div class="prompt entra" style="--i:6;flex:1">
+<p class="lbl">PEDIDO CLARO</p>
+<p class="cuerpo">Soy analista de Metrobús y preparo una nota para la dirección. Con Encuesta_limpia.xlsx compara la espera promedio por tramo en el pico de la mañana. Dame una tabla y una gráfica de barras, dime cuántos casos hay en cada tramo y explica cómo calculaste el promedio.</p>
+</div>
+</div>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:24–0:30] Antes de los ejercicios: las cinco partes de un buen pedido. Lee primero el pedido vago y pregunta al grupo qué le falta. Luego muestra el pedido claro y señala dónde está cada una de las cinco partes. Todos los textos de los ejercicios siguen esta estructura; el punto 5 (control) es el que más se olvida y el que evita errores.</aside>
 </section>
 <section id="caso" class="contenido">
 <div class="topbar"></div>
@@ -266,7 +333,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 <div class="parada entra" style="--i:4"><div class="riel"><div class="seg"></div><div class="estacion"><p>5</p></div><div class="seg vacio"></div></div><p class="et">Informe institucional</p><p class="sub">Skill + Google Drive</p></div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:23–0:26] Recorre la ruta. Señala las dos novedades del curso: un conector (MCP) para leer y guardar en Google Drive, y un skill que crearemos para hacer documentos con el encabezado institucional.</aside>
+<aside>[0:30–0:32] Recorre la ruta. Señala las dos novedades del curso: un conector (MCP) para leer y guardar en Google Drive, y un skill que crearemos para hacer documentos con el encabezado institucional.</aside>
 </section>
 <section id="ej1" class="contenido">
 <div class="topbar"></div>
@@ -288,7 +355,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:26–0:36] Ejercicio 1. Si no detecta algo, pregúntale directo: “¿hay folios repetidos?”. Pídele que diga cuántos registros había antes y después de cada paso.</aside>
+<aside>[0:32–0:40] Ejercicio 1. Si no detecta algo, pregúntale directo: “¿hay folios repetidos?”. Pídele que diga cuántos registros había antes y después de cada paso.</aside>
 </section>
 <section id="res1" class="contenido">
 <div class="topbar"></div>
@@ -301,7 +368,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 <div class="banda" style="background:var(--claro);padding:36px 40px"><p><b class="rojo">612 registros → 600 cuestionarios válidos.</b> Si se le pasan los duplicados, todos los porcentajes posteriores salen ligeramente mal. Por eso siempre pedimos: “dime cuántos registros quedaron”.</p></div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:36–0:38] Respuestas de referencia en Resultados_de_referencia_P1.xlsx.</aside>
+<aside>[0:40–0:42] Respuestas de referencia en Resultados_de_referencia_P1.xlsx.</aside>
 </section>
 <section id="ej2" class="contenido">
 <div class="topbar"></div>
@@ -322,7 +389,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:38–0:48] Ejercicio 2. Puntos a comentar: (1) la IA debe excluir “Prefiero no decir” o decirlo; (2) para comparar proporciones usa chi-cuadrada; (3) de noche hay pocos casos y hay que decirlo.</aside>
+<aside>[0:42–0:50] Ejercicio 2. Puntos a comentar: (1) la IA debe excluir “Prefiero no decir” o decirlo; (2) para comparar proporciones usa chi-cuadrada; (3) de noche hay pocos casos y hay que decirlo.</aside>
 </section>
 <section id="res2" class="contenido">
 <div class="topbar"></div>
@@ -337,7 +404,21 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 <p><b class="rojo">Prioridades:</b> espacio a bordo, frecuencia de paso y seguridad son lo que más pesa en la satisfacción y lo peor calificado.</p>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:48–0:50] Diferencia mujeres vs hombres: 57% vs 28% (χ² = 50.9, p &lt; 0.001). Estas tres prioridades serán los indicadores del instrumento de la Plática 2.</aside>
+<aside>[0:50–0:52] Diferencia mujeres vs hombres: 57% vs 28% (χ² = 50.9, p &lt; 0.001). Estas tres prioridades serán los indicadores del instrumento de la Plática 2.</aside>
+</section>
+<section id="errores" class="contenido">
+<div class="topbar"></div>
+<h2>Errores frecuentes de la IA al analizar datos</h2>
+<table class="tabla entra" style="--i:0">
+<tr class="cab-tabla"><th>Error</th><th>Cómo se ve</th><th>Cómo detectarlo</th></tr>
+<tr><td class="err">Cifras sin cálculo</td><td>Da un porcentaje que no sale de ninguna tabla.</td><td>Pide la fórmula y recalcula una cifra tú.</td></tr>
+<tr><td class="err">Base equivocada</td><td>Calcula sobre 612 registros en lugar de 600.</td><td>Pide el número de casos en cada tabla.</td></tr>
+<tr><td class="err">Códigos como números</td><td>Promedia “Prefiero no decir” como si fuera un valor.</td><td>Revisa el Diccionario y qué valores excluyó.</td></tr>
+<tr><td class="err">Pocos casos</td><td>Concluye con muy pocas respuestas de noche.</td><td>Pide n por grupo y que marque los grupos pequeños.</td></tr>
+<tr><td class="err">Causa sin prueba</td><td>“La espera causa la insatisfacción.”</td><td>Pide que distinga asociación de causa.</td></tr>
+</table>
+<div class="pie"><p class="pnum"></p></div>
+<aside>[0:52–1:00] Pregunta al grupo cuál de estos errores vieron en los ejercicios 1 y 2. Los cinco se previenen con lo mismo: pedir que muestre el número de casos y cómo calculó, y comprobar una cifra por cuenta propia (por ejemplo con una tabla dinámica). Una asociación (las dos cosas aparecen juntas) no demuestra causa.</aside>
 </section>
 <section id="ej3" class="contenido">
 <div class="topbar"></div>
@@ -360,7 +441,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[0:50–1:02] Ejercicio 3. Aquí Claude usa el conector de Google Drive (MCP): no lee la carpeta local, va a la nube. Referencia: saturación 51, espera 51 y seguridad 45 menciones (un comentario puede tener varios temas). Las diferencias pequeñas son normales: abren la conversación sobre validar con una segunda persona.</aside>
+<aside>[1:00–1:12] Ejercicio 3. Aquí Claude usa el conector de Google Drive (MCP): no lee la carpeta local, va a la nube. Referencia: saturación 51, espera 51 y seguridad 45 menciones (un comentario puede tener varios temas). Las diferencias pequeñas son normales: abren la conversación sobre validar con una segunda persona.</aside>
 </section>
 <section id="ej4" class="contenido">
 <div class="topbar"></div>
@@ -383,7 +464,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[1:02–1:12] Ejercicio 4. La verificación con Ctrl+F es el momento didáctico clave: una cita parafraseada o inventada no puede ir en un informe. La frase de E5 es el puente a la Plática 2 (automatización).</aside>
+<aside>[1:12–1:24] Ejercicio 4. La verificación con Ctrl+F es el momento didáctico clave: una cita parafraseada o inventada no puede ir en un informe. La frase de E5 es el puente a la Plática 2 (automatización).</aside>
 </section>
 <section id="ej5a" class="contenido">
 <div class="topbar"></div>
@@ -406,7 +487,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[1:12–1:20] Ejercicio 5, parte A. Explica qué es un skill: una carpeta con instrucciones (SKILL.md) y archivos (aquí el encabezado con logos) que Claude carga cuando la tarea lo pide. Si la creación falla o tarda, usa el respaldo: Personalizar › Skills › + › Crear skill › Subir un skill › documento-institucional-metrobus.zip (carpeta Skill_documento_institucional). Si el skill no se reconoce, abre una tarea nueva.</aside>
+<aside>[1:24–1:32] Ejercicio 5, parte A. Explica qué es un skill: una carpeta con instrucciones (SKILL.md) y archivos (aquí el encabezado con logos) que Claude carga cuando la tarea lo pide. Si la creación falla o tarda, usa el respaldo: Personalizar › Skills › + › Crear skill › Subir un skill › documento-institucional-metrobus.zip (carpeta Skill_documento_institucional). Si el skill no se reconoce, abre una tarea nueva.</aside>
 </section>
 <section id="ej5b" class="contenido">
 <div class="topbar"></div>
@@ -425,7 +506,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[1:20–1:35] Ejercicio 5, parte B. Aquí se juntan las tres piezas: carpeta local (resultados), skill (formato institucional) y conector MCP (guardar en Drive). En modo Manual, Claude pedirá aprobación para subir el archivo. A la derecha: ejemplo de cómo debe verse.</aside>
+<aside>[1:32–1:45] Ejercicio 5, parte B. Aquí se juntan las tres piezas: carpeta local (resultados), skill (formato institucional) y conector MCP (guardar en Drive). En modo Manual, Claude pedirá aprobación para subir el archivo. A la derecha: ejemplo de cómo debe verse.</aside>
 </section>
 <section id="verificar" class="contenido">
 <div class="topbar"></div>
@@ -453,7 +534,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 </div>
 <div class="pie"><p class="pnum"></p></div>
-<aside>[1:35–1:45] Marco legal (verificar con la Unidad de Transparencia): Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados (DOF 20/03/2025) y la nueva ley local de la CDMX aprobada en mayo de 2026. La cuenta metrobusplatica@gmail.com es solo para práctica: no usarla con datos reales.</aside>
+<aside>[1:45–1:52] Marco legal (verificar con la Unidad de Transparencia): Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados (DOF 20/03/2025) y la nueva ley local de la CDMX aprobada en mayo de 2026. La cuenta metrobusplatica@gmail.com es solo para práctica: no usarla con datos reales.</aside>
 </section>
 <section id="cierre" class="cierre">
 <h1>Gracias · Preguntas</h1>
@@ -466,7 +547,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 <li>Tareas programadas → que el reporte se haga solo cada lunes</li>
 </ul>
 </div>
-<aside>[1:45–2:00] Preguntas. Recuerda guardar la tarea de Cowork: la Plática 2 parte del informe y del skill de hoy.</aside>
+<aside>[1:52–2:00] Preguntas. Recuerda guardar la tarea de Cowork: la Plática 2 parte del informe y del skill de hoy.</aside>
 </section>
 </div>
 <div id="barra"></div>
