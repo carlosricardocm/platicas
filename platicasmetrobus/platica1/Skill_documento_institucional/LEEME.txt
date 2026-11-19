@@ -1,6 +1,6 @@
 SKILL DE RESPALDO: documento-institucional-metrobus
 ====================================================
-Es el mismo skill que se crea en el Ejercicio 5 de la Plática 1. Úsalo si la creación en vivo falla.
+Es el mismo skill que se crea en el Ejercicio 5 de la Sesión 1. Úsalo si la creación en vivo falla.
 
 Contenido del ZIP:
   SKILL.md                    instrucciones que sigue Claude (formato institucional)

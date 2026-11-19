@@ -1,6 +1,6 @@
-# Pláticas, cursos y talleres
+# Sesiones, cursos y talleres
 
-Material de las pláticas, cursos y talleres impartidos por **Carlos Ricardo Cruz Mendoza** (DCC, IIMAS, UNAM).
+Material de las sesiones, cursos y talleres impartidos por **Carlos Ricardo Cruz Mendoza** (DCC, IIMAS, UNAM).
 
 Cada actividad tiene su propia carpeta con la presentación interactiva (HTML), los datos de los ejercicios y un `README.md` que explica su contenido.
 
@@ -8,8 +8,8 @@ Cada actividad tiene su propia carpeta con la presentación interactiva (HTML), 
 
 | Institución / grupo | Actividad | Tipo | Fecha | Material |
 |---|---|---|---|---|
-| Metrobús CDMX | Herramientas de investigación cuantitativa y cualitativa con IA | Plática | 19 nov 2026 | [platicasmetrobus/platica1](platicasmetrobus/platica1/) · [presentación](https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/) |
-| Metrobús CDMX | Automatización de procesos e instrumentos de evaluación | Plática | — | [platicasmetrobus/platica2](platicasmetrobus/platica2/) · [presentación](https://carlosricardocm.github.io/platicas/platicasmetrobus/platica2/) |
+| Metrobús CDMX | Herramientas de investigación cuantitativa y cualitativa con IA | Sesión | 19 nov 2026 | [platicasmetrobus/platica1](platicasmetrobus/platica1/) · [presentación](https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/) |
+| Metrobús CDMX | Automatización de procesos e instrumentos de evaluación | Sesión | — | [platicasmetrobus/platica2](platicasmetrobus/platica2/) · [presentación](https://carlosricardocm.github.io/platicas/platicasmetrobus/platica2/) |
 
 ## Organización
 

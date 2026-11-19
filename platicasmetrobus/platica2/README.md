@@ -1,8 +1,8 @@
-# Plática 2 · Automatización de procesos e instrumentos de evaluación
+# Sesión 2 · Automatización de procesos e instrumentos de evaluación
 
 Curso para personal de Metrobús CDMX · Carlos Ricardo Cruz Mendoza, DCC, IIMAS, UNAM
 
-Continuación de la [Plática 1](../platica1/): los hallazgos sobre la Línea 1 (Insurgentes) se convierten en un cuestionario semanal, una clasificación de quejas desde Gmail, un tablero de indicadores y un reporte que se genera solo cada lunes, todo con **Claude Cowork**.
+Continuación de la [Sesión 1](../platica1/): los hallazgos sobre la Línea 1 (Insurgentes) se convierten en un cuestionario semanal, una clasificación de quejas desde Gmail, un tablero de indicadores y un reporte que se genera solo cada lunes, todo con **Claude Cowork**.
 
 > **Todos los datos de este repositorio son ficticios** y se crearon solo para el ejercicio. No contienen información real de personas usuarias ni de Metrobús.
 
@@ -35,14 +35,14 @@ platicasmetrobus/platica2/
 │   ├── Respuestas_semana9.xlsx             Respuestas nuevas de la semana 9 (Ejercicio 3)
 │   └── Instrumento_Pulso_L1_v2.docx        Cuestionario de referencia (Ejercicio 1)
 ├── Material Encuesta/
-│   └── Informe_hallazgos_Linea1.docx       Informe de la Plática 1, punto de partida del Ejercicio 1
+│   └── Informe_hallazgos_Linea1.docx       Informe de la Sesión 1, punto de partida del Ejercicio 1
 ├── Resultados_de_referencia/       Ejemplos de lo que debe producir Cowork
 │   ├── Cuestionario_Pulso_L1.docx
 │   └── Reporte_semanal_semana9.docx
 └── Skill_documento_institucional/  Skill del formato institucional (.zip para subir en Personalizar › Skills)
 ```
 
-El Ejercicio 1 parte del informe de la Plática 1 (`Informe_hallazgos_Linea1.docx`). Esta carpeta trae su propia copia en `Material Encuesta`, así que el material de la Plática 2 funciona solo.
+El Ejercicio 1 parte del informe de la Sesión 1 (`Informe_hallazgos_Linea1.docx`). Esta carpeta trae su propia copia en `Material Encuesta`, así que el material de la Sesión 2 funciona solo.
 
 ## Ejercicios
 

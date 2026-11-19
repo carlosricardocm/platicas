@@ -1,4 +1,4 @@
-# Plática 1 · Herramientas de investigación cuantitativa y cualitativa con IA
+# Sesión 1 · Herramientas de investigación cuantitativa y cualitativa con IA
 
 Curso para personal de Metrobús CDMX · Carlos Ricardo Cruz Mendoza, DCC, IIMAS, UNAM
 
@@ -10,7 +10,7 @@ Caso de uso: análisis cualitativo y cuantitativo de la encuesta de satisfacció
 
 Abre **`Presentacion Metrobus Herramientas de investigación cuantitativa y cualitativa con IA Jue 19 noviembre 2026.html`** en cualquier navegador (descárgalo junto con las carpetas `Logos` y `assets`, que tienen sus imágenes).
 
-Plática impartida el jueves 19 de noviembre de 2026.
+Sesión impartida el jueves 19 de noviembre de 2026.
 
 | Tecla | Acción |
 |---|---|
