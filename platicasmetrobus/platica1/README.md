@@ -39,10 +39,7 @@ platicasmetrobus/platica1/
 ├── Resultados_de_referencia/       Respuestas esperadas para comparar
 │   ├── Resultados_de_referencia_P1.xlsx
 │   └── Informe_hallazgos_Linea1.docx
-├── Skill_documento_institucional/  Respaldo del skill del ejercicio 5 (.zip para subir en Personalizar › Skills)
-└── Guias/
-    ├── Guion_paso_a_paso_P1.docx   Todos los textos para escribir en Cowork
-    └── Preparacion.docx            Guía de preparación del instructor
+└── Skill_documento_institucional/  Respaldo del skill del ejercicio 5 (.zip para subir en Personalizar › Skills)
 ```
 
 ## Ejercicios
@@ -53,7 +50,7 @@ platicasmetrobus/platica1/
 4. **Analizar entrevistas y verificar citas** (cualitativo · carpeta local)
 5. **Crear y usar un skill** para el informe institucional y guardarlo en Drive (skill + MCP)
 
-Los textos exactos de cada ejercicio están en la presentación y en `Guias/Guion_paso_a_paso_P1.docx`.
+Los textos exactos de cada ejercicio están en la presentación.
 
 ## Uso responsable
 

@@ -38,10 +38,7 @@ platicasmetrobus/platica2/
 ├── Resultados_de_referencia/       Ejemplos de lo que debe producir Cowork
 │   ├── Cuestionario_Pulso_L1.docx
 │   └── Reporte_semanal_semana9.docx
-├── Skill_documento_institucional/  Skill del formato institucional (.zip para subir en Personalizar › Skills)
-└── Guias/
-    ├── Guion_paso_a_paso_P2.docx   Todos los textos para escribir en Cowork
-    └── Preparacion.docx            Guía de preparación del instructor
+└── Skill_documento_institucional/  Skill del formato institucional (.zip para subir en Personalizar › Skills)
 ```
 
 El Ejercicio 1 parte del informe de la Plática 1 (`Informe_hallazgos_Linea1.docx`). Esta carpeta trae su propia copia en `Material Encuesta`, así que el material de la Plática 2 funciona solo.
@@ -54,7 +51,7 @@ El Ejercicio 1 parte del informe de la Plática 1 (`Informe_hallazgos_Linea1.doc
 4. **Reporte semanal** con logos, guardado en Drive y con borrador de correo (skill + MCP)
 5. **Programar la tarea** para que se repita cada lunes
 
-Los textos exactos de cada ejercicio están en la presentación y en `Guias/Guion_paso_a_paso_P2.docx`.
+Los textos exactos de cada ejercicio están en la presentación.
 
 ## Uso responsable
 

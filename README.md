@@ -2,7 +2,7 @@
 
 Material de las pláticas, cursos y talleres impartidos por **Carlos Ricardo Cruz Mendoza** (DCC, IIMAS, UNAM).
 
-Cada actividad tiene su propia carpeta con la presentación interactiva (HTML), los datos de los ejercicios, las guías y un `README.md` que explica su contenido.
+Cada actividad tiene su propia carpeta con la presentación interactiva (HTML), los datos de los ejercicios y un `README.md` que explica su contenido.
 
 ## Índice
 
@@ -20,7 +20,7 @@ platicas/
     └── <actividad>/
         ├── README.md         Descripción y contenido de la actividad
         ├── index.html        Abre la presentación
-        └── ...               Datos, guías y recursos
+        └── ...               Datos y recursos
 ```
 
 Para agregar una actividad nueva: crea su carpeta, incluye su `README.md` y añade una fila al índice.
