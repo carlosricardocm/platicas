@@ -17,6 +17,7 @@ Abre **`Presentacion Metrobus Automatización de procesos e instrumentos de eval
 | F | Pantalla completa |
 | N | Mostrar u ocultar notas del orador |
 | `#5` al final de la dirección | Ir a la diapositiva 5 |
+| Botón **Copiar texto** | Copia el texto de los recuadros «Escribe en Cowork» para pegarlo directo en Claude |
 
 ## Contenido
 

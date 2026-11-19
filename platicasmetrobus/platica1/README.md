@@ -19,6 +19,7 @@ Plática impartida el jueves 19 de noviembre de 2026.
 | F | Pantalla completa |
 | N | Mostrar u ocultar notas del orador |
 | `#5` al final de la dirección | Ir a la diapositiva 5 |
+| Botón **Copiar texto** | Copia el texto de los recuadros «Escribe en Cowork» para pegarlo directo en Claude |
 
 Si activas **GitHub Pages** (Settings › Pages › rama `main`), la presentación queda publicada en https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/ (esa dirección abre la presentación directamente).
 
