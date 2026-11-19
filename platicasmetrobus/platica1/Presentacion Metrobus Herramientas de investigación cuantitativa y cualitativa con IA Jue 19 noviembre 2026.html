@@ -602,7 +602,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
     var d=document.createElement('div'); d.className='mat-acciones';
     var DL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>';
     var LS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>';
-    d.innerHTML='<a class="btn-mat prim" href="Material_completo_platica1.zip" download>'+DL+'Descargar el material (.zip)</a><a class="btn-mat sec" href="./">'+LS+'Ver archivos</a>';
+    d.innerHTML='<a class="btn-mat prim" href="Material_completo_platica1.zip" download>'+DL+'Descargar el material (.zip)</a><a class="btn-mat sec" href="index.html">'+LS+'Ver archivos</a>';
     [].slice.call(d.querySelectorAll('a')).forEach(function(a){a.addEventListener('click',function(e){e.stopPropagation();});});
     l.parentNode.insertBefore(d,l.nextSibling);
   })();
@@ -613,7 +613,7 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
     else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(k)>=0){e.preventDefault();ir(i-1);}
     else if(k==='Home')ir(0);else if(k==='End')ir(S.length-1);
     else if(k==='n'||k==='N')notas.style.display=notas.style.display==='block'?'none':'block';
-    else if(k==='m'||k==='M'){location.href='./';}
+    else if(k==='m'||k==='M'){location.href='index.html';}
     else if(k==='f'||k==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}});
   addEventListener('click',function(e){if(notas.contains(e.target))return;if(e.target.closest&&e.target.closest('.prompt'))return;if(String(window.getSelection())!=='')return;ir(e.clientX<innerWidth*0.3?i-1:i+1);});
   var x0=null;addEventListener('touchstart',function(e){x0=e.touches[0].clientX;});
