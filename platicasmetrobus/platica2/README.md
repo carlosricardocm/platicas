@@ -24,7 +24,8 @@ Abre **`Presentacion Metrobus Automatización de procesos e instrumentos de eval
 ```
 platicasmetrobus/platica2/
 ├── Presentacion Metrobus Automatización … evaluación.html   Presentación interactiva (25 diapositivas)
-├── index.html                      Abre la presentación (para GitHub Pages)
+├── index.html                      Página del material: botón a la presentación y descargas
+├── Material_completo_platica2.zip   Todo el material en un solo archivo
 ├── assets/                         Imágenes de la presentación
 ├── Logos/encabezado.png            Encabezado institucional (lo usa el skill)
 ├── Material Evaluacion/            Datos que se usan en los ejercicios
@@ -32,6 +33,8 @@ platicasmetrobus/platica2/
 │   ├── Tablero_evaluacion_L1.xlsx          Tablero de indicadores con fórmulas (Ejercicios 3 y 4)
 │   ├── Respuestas_semana9.xlsx             Respuestas nuevas de la semana 9 (Ejercicio 3)
 │   └── Instrumento_Pulso_L1_v2.docx        Cuestionario de referencia (Ejercicio 1)
+├── Material Encuesta/
+│   └── Informe_hallazgos_Linea1.docx       Informe de la Plática 1, punto de partida del Ejercicio 1
 ├── Resultados_de_referencia/       Ejemplos de lo que debe producir Cowork
 │   ├── Cuestionario_Pulso_L1.docx
 │   └── Reporte_semanal_semana9.docx
@@ -41,7 +44,7 @@ platicasmetrobus/platica2/
     └── Preparacion.docx            Guía de preparación del instructor
 ```
 
-El Ejercicio 1 usa el informe de la Plática 1 (`Informe_hallazgos_Linea1.docx`, carpeta `Material Encuesta`); si no lo tienes, está en `../platica1/Resultados_de_referencia/`.
+El Ejercicio 1 parte del informe de la Plática 1 (`Informe_hallazgos_Linea1.docx`). Esta carpeta trae su propia copia en `Material Encuesta`, así que el material de la Plática 2 funciona solo.
 
 ## Ejercicios
 

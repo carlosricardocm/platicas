@@ -21,14 +21,15 @@ Plática impartida el jueves 19 de noviembre de 2026.
 | `#5` al final de la dirección | Ir a la diapositiva 5 |
 | Botón **Copiar texto** | Copia el texto de los recuadros «Escribe en Cowork» para pegarlo directo en Claude |
 
-Si activas **GitHub Pages** (Settings › Pages › rama `main`), la presentación queda publicada en https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/ (esa dirección abre la presentación directamente).
+Si activas **GitHub Pages** (Settings › Pages › rama `main`), la presentación queda publicada en https://carlosricardocm.github.io/platicas/platicasmetrobus/platica1/ (esa dirección abre la página del material, con un botón a la presentación y enlaces para descargar cada archivo o todo en un .zip).
 
 ## Contenido
 
 ```
 platicasmetrobus/platica1/
 ├── Presentacion Metrobus … Jue 19 noviembre 2026.html   Presentación interactiva (20 diapositivas)
-├── index.html                      Abre la presentación (para GitHub Pages)
+├── index.html                      Página del material: botón a la presentación y descargas
+├── Material_completo_platica1.zip   Todo el material en un solo archivo
 ├── assets/                         Imágenes de la presentación
 ├── Logos/encabezado.png            Encabezado institucional (lo usa el skill del ejercicio 5)
 ├── Material Encuesta/              Datos que se usan en los ejercicios
