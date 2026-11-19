@@ -15,6 +15,25 @@ h1,h2,h3,p,ul,ol{margin:0}
 #escenario>section{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;visibility:hidden}
 #escenario>section.activa{visibility:visible}
 section aside{display:none}
+body.presentador{background:#14161A;overflow:hidden}
+body.presentador #barra,body.presentador #ayuda,body.presentador #notas{display:none!important}
+#pres{position:fixed;inset:0;display:grid;grid-template-columns:62% 1fr;grid-template-rows:56px 1fr;gap:14px;padding:14px;color:#EEE;font-family:'Source Sans 3',Arial,sans-serif;pointer-events:none;z-index:3}
+#pcab{grid-column:1/3;display:flex;align-items:center;gap:12px;pointer-events:auto}
+#pcab span{font-size:22px;font-weight:700}
+#preloj{font-variant-numeric:tabular-nums;color:#F4B6C0;margin-right:auto;font-size:26px!important}
+#pcab button{font:700 18px 'Source Sans 3',Arial,sans-serif;background:#2B2F36;color:#FFF;border:1px solid #4A4F57;border-radius:8px;padding:8px 16px;cursor:pointer}
+#pcab button:hover{background:#3A3F47}
+#pactual{grid-row:2;border:1px solid #333;border-radius:8px}
+#plado{grid-row:2;display:flex;flex-direction:column;gap:8px;min-height:0;pointer-events:auto}
+.ptit{font-size:15px;text-transform:uppercase;letter-spacing:2px;color:#9AA0A6;margin:4px 0 0}
+#psigcaja{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden;flex:none}
+#pesc2{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+#pesc2>section{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;visibility:visible}
+#pesc2 *{animation:none!important}
+#pesc2 .copiar,#pesc2 .mat-acciones,#pesc2 aside,#pesc2 .pnum{display:none!important}
+.pfin{color:#FFF;font-size:90px;font-weight:700;padding:120px}
+#pnotas{flex:1;min-height:0;overflow:auto;background:#1F2228;border-radius:8px;padding:16px 20px;font-size:24px;line-height:1.45}
+
 .mat-acciones{display:flex;gap:20px;flex-wrap:wrap}
 .btn-mat{display:inline-flex;align-items:center;gap:14px;font:700 28px 'Source Sans 3',Arial,sans-serif;padding:16px 30px;border-radius:999px;text-decoration:none;cursor:pointer}
 .btn-mat svg{width:30px;height:30px}
@@ -565,15 +584,24 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
 </div>
 <div id="barra"></div>
 <div id="notas"></div>
-<div id="ayuda">← → avanzar · F pantalla completa · N notas · M material</div>
+<div id="ayuda">← → avanzar · P notas del presentador · F pantalla completa · M material</div>
 <script>
 (function(){
   var esc=document.getElementById('escenario'), S=[].slice.call(esc.children), i=0;
   var barra=document.getElementById('barra'), notas=document.getElementById('notas'), ayuda=document.getElementById('ayuda');
-  function ajusta(){var k=Math.min(innerWidth/1920,innerHeight/1080);esc.style.transform='translate('+(innerWidth-1920*k)/2+'px,'+(innerHeight-1080*k)/2+'px) scale('+k+')';}
+  var DECK=document.title, PRES=/[?&]presentador/.test(location.search), otro=PRES?window.opener:null, remoto=false;
+  function enviar(n){try{if(otro&&!otro.closed)otro.postMessage({deck:DECK,t:'ir',n:n},'*');}catch(x){}}
+  addEventListener('message',function(e){var d=e.data;if(!d||d.deck!==DECK)return;
+    if(d.t==='ir'&&d.n!==i){remoto=true;ir(d.n);remoto=false;}
+    else if(d.t==='hola'&&!PRES){otro=e.source;enviar(i);}});
+  function encaja(el,box){var r=box.getBoundingClientRect();var k=Math.min(r.width/1920,r.height/1080);el.style.transform='translate('+(r.left+(r.width-1920*k)/2)+'px,'+(r.top+(r.height-1080*k)/2)+'px) scale('+k+')';}
+  function ajustaSig(){var c=document.getElementById('psigcaja'),e2=document.getElementById('pesc2');if(!c)return;var k=c.clientWidth/1920;e2.style.transform='scale('+k+')';}
+
+  function ajusta(){if(PRES){if(!document.getElementById('pactual'))return;encaja(esc,document.getElementById('pactual'));ajustaSig();return;}var k=Math.min(innerWidth/1920,innerHeight/1080);esc.style.transform='translate('+(innerWidth-1920*k)/2+'px,'+(innerHeight-1080*k)/2+'px) scale('+k+')';}
   function ir(n){n=Math.max(0,Math.min(S.length-1,n));S[i].classList.remove('activa');void S[n].offsetWidth;S[n].classList.add('activa');i=n;
     barra.style.width=((i+1)/S.length*100)+'%';history.replaceState(null,'','#'+(i+1));
-    var a=S[i].querySelector('aside');notas.innerHTML='<b>Notas · diapositiva '+(i+1)+' de '+S.length+'</b><br>'+(a?a.innerHTML:'(sin notas)');}
+    var a=S[i].querySelector('aside');notas.innerHTML='<b>Notas · diapositiva '+(i+1)+' de '+S.length+'</b><br>'+(a?a.innerHTML:'(sin notas)');
+    if(!remoto)enviar(i);if(PRES)actualizaPres();}
 
   var ICO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
   function copiar(t){
@@ -613,11 +641,41 @@ section.activa .entra { animation: sube 500ms ease-out both; animation-delay: ca
     else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(k)>=0){e.preventDefault();ir(i-1);}
     else if(k==='Home')ir(0);else if(k==='End')ir(S.length-1);
     else if(k==='n'||k==='N')notas.style.display=notas.style.display==='block'?'none':'block';
-    else if(k==='m'||k==='M'){location.href='index.html';}
+    else if((k==='p'||k==='P')&&!PRES){abrirPres();}
+    else if((k==='m'||k==='M')&&!PRES){location.href='index.html';}
     else if(k==='f'||k==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}});
-  addEventListener('click',function(e){if(notas.contains(e.target))return;if(e.target.closest&&e.target.closest('.prompt'))return;if(String(window.getSelection())!=='')return;ir(e.clientX<innerWidth*0.3?i-1:i+1);});
+  addEventListener('click',function(e){if(PRES)return;if(notas.contains(e.target))return;if(e.target.closest&&e.target.closest('.prompt'))return;if(String(window.getSelection())!=='')return;ir(e.clientX<innerWidth*0.3?i-1:i+1);});
   var x0=null;addEventListener('touchstart',function(e){x0=e.touches[0].clientX;});
-  addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)ir(d<0?i+1:i-1);x0=null;});
+  addEventListener('touchend',function(e){if(PRES||x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)ir(d<0?i+1:i-1);x0=null;});
+
+  function actualizaPres(){
+    document.getElementById('pnum').textContent='Diapositiva '+(i+1)+' de '+S.length;
+    var a=S[i].querySelector('aside');document.getElementById('pnotas').innerHTML=a?a.innerHTML:'(sin notas)';
+    var e2=document.getElementById('pesc2');e2.innerHTML='';
+    if(S[i+1]){var c=S[i+1].cloneNode(true);c.removeAttribute('id');c.classList.add('activa');e2.appendChild(c);}
+    else{e2.innerHTML='<p class="pfin">Fin de la presentación</p>';}
+    ajustaSig();
+  }
+  function abrirPres(){
+    var u=location.href.split('#')[0].split('?')[0]+'?presentador#'+(i+1);
+    var w=window.open(u,'presentador','width=1280,height=800');
+    if(w){otro=w;}else{ayuda.textContent='Permite las ventanas emergentes de esta página para abrir la vista del presentador';ayuda.style.opacity=1;}
+  }
+  if(PRES){
+    document.body.classList.add('presentador');document.title='Notas · '+DECK;
+    var ui=document.createElement('div');ui.id='pres';
+    ui.innerHTML='<div id="pcab"><span id="pnum"></span><span id="preloj">00:00</span>'+
+      '<button type="button" id="preset">Reiniciar reloj</button><button type="button" id="pant">◀ Anterior</button><button type="button" id="psig">Siguiente ▶</button></div>'+
+      '<div id="pactual"></div><div id="plado"><p class="ptit">Siguiente</p><div id="psigcaja"><div id="pesc2"></div></div><p class="ptit">Notas</p><div id="pnotas"></div></div>';
+    document.body.appendChild(ui);
+    var t0=Date.now();
+    document.getElementById('preset').onclick=function(){t0=Date.now();this.blur();};
+    document.getElementById('pant').onclick=function(){ir(i-1);this.blur();};
+    document.getElementById('psig').onclick=function(){ir(i+1);this.blur();};
+    setInterval(function(){var s=Math.floor((Date.now()-t0)/1000);document.getElementById('preloj').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');},1000);
+    if(otro){try{otro.postMessage({deck:DECK,t:'hola'},'*');}catch(x){}}
+    ajusta();
+  }
   S.forEach(function(s){s.classList.remove('activa');});
   var h=parseInt(location.hash.slice(1),10);i=0;S[0].classList.add('activa');ir(h>0?h-1:0);
   addEventListener('hashchange',function(){var h=parseInt(location.hash.slice(1),10);if(h>0&&h-1!==i)ir(h-1);});

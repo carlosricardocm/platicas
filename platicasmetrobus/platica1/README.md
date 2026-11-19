@@ -17,7 +17,8 @@ Plática impartida el jueves 19 de noviembre de 2026.
 | → · Espacio · clic | Siguiente diapositiva |
 | ← | Diapositiva anterior |
 | F | Pantalla completa |
-| N | Mostrar u ocultar notas del orador |
+| P | Abre la vista del presentador en otra ventana: notas, siguiente diapositiva y cronómetro (en Zoom comparte solo la ventana de la presentación) |
+| N | Muestra las notas dentro de la misma presentación (no la uses mientras compartes pantalla) |
 | `#5` al final de la dirección | Ir a la diapositiva 5 |
 | Botón **Copiar texto** | Copia el texto de los recuadros «Escribe en Cowork» para pegarlo directo en Claude |
 
